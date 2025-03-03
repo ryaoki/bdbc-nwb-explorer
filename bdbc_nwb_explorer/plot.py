@@ -53,7 +53,8 @@ def load_roi_masks() -> dict[str, _npt.NDArray[bool]]:
             entry = src['masks'][ID]
             if 'outline' in entry.attrs['name']:
                 continue
-            mask = (_np.array(entry, copy=False) > 0)
+#            mask = (_np.array(entry, copy=False) > 0)
+            mask = (_np.array(entry, copy=True) > 0)
             MASK_REG[_as_name(entry.attrs['name'], entry.attrs['side'])] = mask
             MASK_SHAPE = mask.shape
     return MASK_REG
